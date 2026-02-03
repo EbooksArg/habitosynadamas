@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<script>
+(function () {
+  // 1. Funciones de utilidad internas
+  function hab_uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0;
+      var v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
+  function hab_getCookie(name) {
+    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : null;
+  }
+
+  try {
+    // 2. Gestión de la Identidad (external_id)
+    var externalId = hab_getCookie('hab_external_id');
+    var baseDomain = window.location.hostname.replace(/^www\./, '');
+
+    if (!externalId) {
+      externalId = hab_uuidv4();
+      document.cookie = 
+        'hab_external_id=' + externalId + 
+        '; expires=' + new Date(Date.now() + 31536000000).toUTCString() + 
+        '; path=/' + 
+        '; domain=.' + baseDomain + 
+        '; SameSite=Lax';
+      console.log('hab_external_id creada: ' + externalId);
+    } else {
+      console.log('hab_external_id recuperada: ' + externalId);
+    }
+
+    // 3. Carga del SDK de Facebook (Siempre se ejecuta)
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq) return;
+      n=f.fbq=function(){
+        n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments)
+      };
+      if(!f._fbq) f._fbq=n;
+      n.push=n; n.loaded=!0; n.version='2.0';
+      n.queue=[];
+      t=b.createElement(e); t.async=!0; t.src=v;
+      s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s);
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+    // 4. Inicialización del Píxel
+    fbq('set', 'autoConfig', 'false', '1335425548022858');
+    fbq('init', '1335425548022858', {
+      'external_id': hab_getCookie('hab_external_id')
+    });
+
+  } catch (e) {
+    console.warn('Error en la inicialización del Píxel/Identity', e);
+  }
+})();
+</script>
+
+<script>
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l !== 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PV66KGQL');
+</script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hábitos y Nada Más | Transforma tu Vida</title>
+    <meta name="description" content="Descubre el poder de los hábitos y transforma tu vida con nuestro eBook exclusivo.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&amp;family=Montserrat:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css-arg/style-arg.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <header>
+        <div class="container">
+            <span class="hero-tag">¡Bien por ti!</span>
+            <h1 class="hero-title">Si has llegado hasta aquí seguramente estás deseando algún cambio...</h1>
+            <h4 class="hero-subtitle">y acabas de dar el primer paso para reconectar con tu verdadero potencial y construir la vida que mereces.</h4>
+        </div>
+    </header>
+
+    <!-- Question Section -->
+    <section class="section-question">
+        <div class="container">
+            <div class="glass-card">
+                <h2>¿Y SI PUDIERAS CAMBIAR TU VIDA DESDE ESTE INSTANTE?</h2>
+                <h4>Créelo porque es posible... depende solo de ti.</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Section -->
+    <section class="section-features">
+        <div class="container">
+            <div class="feature-grid">
+                <div class="feature-image">
+                    <img src="img-arg/mockup.png" alt="Hábitos y Nada Más eBook">
+                </div>
+                <div class="feature-content">
+                    <h1>Desbloquea tu Potencial</h1>
+                    <p>Este eBook es una invitación a construir hábitos poderosos que te impulsen a crecer, superar tus bloqueos internos y reconectar con tu verdadero potencial.</p>
+                    <p>Aprenderás a cultivar una mentalidad fuerte, dejar atrás los miedos y avanzar con firmeza hacia tus objetivos personales y profesionales.</p>
+                    <p>A través de estrategias prácticas y claras, descubrirás cómo derribar las barreras mentales que te frenan y abrir el camino hacia una vida más plena y exitosa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Points Section -->
+    <section class="section-points">
+        <div class="container">
+            <div class="points-header">
+                <h1>5 PUNTOS FUNDAMENTALES</h1>
+                <h4>Para lograr un cambio verdadero y sostenido en el tiempo</h4>
+            </div>
+            <div class="points-grid">
+                <div class="point-card">
+                    <h3><span>1</span> Renovar tu Mente</h3>
+                    <ul>
+                        <li>Tu Mente, Tu Vida y Tus Hábitos</li>
+                        <li>El impacto de tus Hábitos</li>
+                        <li>Mentalidad de crecimiento</li>
+                    </ul>
+                </div>
+                <div class="point-card">
+                    <h3><span>2</span> Entendiendo los Hábitos</h3>
+                    <ul>
+                        <li>Qué son y cómo se forman</li>
+                        <li>¿Por qué los hábitos importan?</li>
+                        <li>El Bucle del Hábito: Señal, Rutina y Recompensa</li>
+                    </ul>
+                </div>
+                <div class="point-card">
+                    <h3><span>3</span> Mindfulness</h3>
+                    <ul>
+                        <li>Más Allá de la Meditación</li>
+                        <li>Claves para Tu Transformación</li>
+                        <li>Prácticas de Mindfulness en la vida diaria</li>
+                    </ul>
+                </div>
+                <div class="point-card">
+                    <h3><span>4</span> Metas Transformadoras</h3>
+                    <ul>
+                        <li>Crear Metas Claras</li>
+                        <li>Fijar Metas que Inspiren Cambio</li>
+                        <li>El Puente Hacia Tus Logros</li>
+                    </ul>
+                </div>
+                <div class="point-card">
+                    <h3><span>5</span> Poder de Visualización</h3>
+                    <ul>
+                        <li>Tu Mente Subconsciente</li>
+                        <li>Técnicas, Guías y Ejercicios</li>
+                        <li>Superando Obstáculos</li>
+                    </ul>
+                </div>
+                <div class="point-card" id="card_finales">
+                    <h3>... Secciónes Finales</h3>
+                    <ul>
+                        <li>Sosteniendo el Cambio</li>
+                        <li>Reflexiones sobre el Poder de la Renovación Mental</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Section -->
+    <section class="section-learning">
+        <div class="container">
+	        <div class="learning-header">
+                	<h2>¿Qué aprenderás leyendo este eBook?</h2>
+            	</div>
+            <div class="learning-grid">
+                <div class="learning-box">
+                    <ul>
+                        <li>Estrategias probadas para construir hábitos duraderos.</li>
+                        <li>Cómo establecer metas claras y desarrollar la disciplina para alcanzarlas.</li>
+                        <li>Técnicas para mejorar tus relaciones personales y profesionales.</li>
+                        <li>Secretos para cultivar una mentalidad positiva y resiliente.</li>
+                    </ul>
+                </div>
+                <div class="learning-box">
+                    <ul>
+                        <li>Cómo identificar y aprovechar oportunidades de crecimiento.</li>
+                        <li>La importancia de la educación continua y el aprendizaje constante.</li>
+                        <li>Desarrollar hábitos que te impulsen hacia el éxito.</li>
+                        <li>Encontrar tu propósito de vida y vivir con pasión.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section-testimonials">
+        <div class="container">
+            <div class="testimonials-header">
+                <h2>Que Dicen Nuestros Lectores</h2>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card"><img src="img-arg/test1.png" alt="Testimonio 1"></div>
+                <div class="testimonial-card"><img src="img-arg/test2.png" alt="Testimonio 2"></div>
+                <div class="testimonial-card"><img src="img-arg/test3.png" alt="Testimonio 3"></div>
+            </div>
+ 	    <div class="testimonial-footer-image">
+                <img src="img-arg/amazon.png" alt="Calificación Amazon">
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section-cta">
+        <div class="container">
+            <h2 class="cta-tag">El momento de tomar el control es</h2>
+            <h1 class="cta-main">¡AHORA!</h1>
+            <div class="glass-card" style="text-align: center;">
+                <h4 style="line-height: 1.3;">La clave para una vida plena y exitosa reside en la formación de hábitos positivos y el desarrollo personal continuo. Este libro no es solo teoría, es una guía práctica con ejercicios que podrás aplicar en tu día a día.</h4>
+            </div>
+        </div>
+    </section>
+
+<!-- Pay Section -->
+    <section class="section-pay">
+        <div class="container" style="padding-bottom: 4rem;">
+            <div class="pay-header">
+                <h1>¡Descarga tu Ebook hoy!</h1>
+            </div>
+	        <a href="https://mpago.li/2WoMDdJ" target="_blank" class="pay-button">
+                <img id="download_ebook" src="img-arg/pay-mpago-.png" alt="Descargar Mpago">
+            </a>
+        </div>
+    </section>
+
+    <!-- Bonuses -->
+    <section class="section-bonuses">
+        <div class="container" style="padding-top: 0;">
+            <div class="bonus-header">
+                <h1>¡Con tu compra vas a recibir 2 regalos!</h1>
+            </div>  
+            <div class="bonus-grid">
+                <div class="bonus-item">
+                    <div class="bonus-img-wrapper">
+                        <img src="img-arg/audiobook.png" alt="AudioLibro">
+                    </div>
+                    <p class="bono-texto">
+                        AudioLibro <span class="gratis">GRATIS</span>
+                    </p>
+                </div>
+                <div class="bonus-item">
+                    <div class="bonus-img-wrapper">
+                        <img src="img-arg/flipbook.png" alt="FlipBook">
+                    </div>
+                    <p class="bono-texto">
+                        FlipBook <span class="gratis">GRATIS</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee Section -->
+    <section class="section-guarantee">
+        <div class="container">
+            <div class="guarantee-content">
+                <img src="img-arg/guarantee.png" alt="Garantía de Satisfacción">
+		        <h2>Compra sin riesgo</h2>
+                <div>
+                   <p><strong>Tienes 7 días de garantía.</strong> El Plazo de Garantía es el período que tienes para pedir el reembolso integral del valor que pagaste por tu compra, cuando el producto no te sea satisfactorio. Una vez solicitado el reembolso, el valor estará en tu cuenta dentro de los 7 días hábiles.<strong> Y NO TIENES QUE DEVOLVER EL PRODUCTO.</strong></p>
+                </div>
+                <h2 style="margin-top: 25px;">¿Cómo accedo al ebook?</h2>
+                <div>
+                   <p>Al confirmarse el pago, Mercado Pago mostrará una pantalla con los datos de la transacción, allí debes hacer clic en el texto <strong>"Volver a EbooksARG"</strong>, que se encuentra más abajo, y comenzará la descarga del producto. También recibirás los datos de la compra en tu email. Por consultas o <strong>incovenientes con la descarga</strong>, escríbenos a <strong>librosconsuperpoderes@gmail.com</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Footer -->
+    <section style="background: white; text-align: center;">
+        <div class="container">
+            <h1 style="font-size: 2rem; line-height: 1.1; color: var(--primary-color); margin-bottom: 20px;">Ebook + AudioLibro + FlipBook</h1>
+            <img src="img-arg/combo.png" alt="Combo Hábitos y Nada Más" style="max-width: 600px; width: 100%; margin-bottom: 30px;">
+	    <br>
+	         <a href="https://mpago.li/2WoMDdJ" target="_blank" class="pay-button">
+                <img id="download_ebook" src="img-arg/pay-mpago-.png" alt="Descargar Mpago">
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=61572228031882" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/librosconsuperpoderes/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>librosconsuperpoderes@gmail.com</p>
+            <div class="footer-copy">
+                <p style="margin: 15px;">Todos los derechos reservados &copy; 2025</p>
+                <p style="margin-top: 15px; font-size: 0.75rem;">ESTE SITIO WEB NO ES FACEBOOK: Este sitio web no es parte del sitio web de Facebook o Facebook Inc. Además, este sitio web NO está respaldado por Facebook de ninguna manera. FACEBOOK es una marca comercial independiente de FACEBOOK, Inc.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
